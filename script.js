@@ -319,7 +319,7 @@ function cerrarSesion() {
 // CHAT IA
 // =====================
 
-const apiKey = "sk-xxxx";
+const apiKey = "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";
 
 let historial = [
   {
