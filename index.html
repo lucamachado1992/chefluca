@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chef Luca</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Splash screen -->
+  <div class="pantalla" id="pantallaSplash">
+    <div class="titulo">Chef Luca</div>
+    <p>Tu chef personal con inteligencia y humor 🍳</p>
+  </div>  
+
+  <!-- Login -->
+  <div class="pantalla" id="pantallaLogin">
+    <h2>¡Bienvenido!</h2>
+    <button onclick="loguearConGoogle()">Continuar con Google</button>
+    <button onclick="loguearConFacebook()">Continuar con Facebook</button>
+    <input type="email" id="emailUsuario" placeholder="O ingresá tu correo" />
+    <button onclick="ingresar()">Ingresar</button>
+  </div>
+
+  <!-- Pantalla principal: Hola Luca estilo Cookidoo -->
+  <div class="pantalla" id="pantallaHome">
+    <h2>Hola Luca 👨‍🍳</h2>
+    <p class="subtitulo">¿Qué querés cocinar, planear o explorar hoy?</p>
+    <div class="tarjetas-home">
+      <div class="tarjeta-home" onclick="navegarDesdeMenu('pantallaChat', this)">
+        <div class="emoji">🧑‍🍳</div>
+        <h3>Chef IA</h3>
+        <p>Tu asistente personal de cocina con humor e inteligencia.</p>
+      </div>
+      <div class="tarjeta-home" onclick="navegarDesdeMenu('pantallaRecetas', this)">
+        <div class="emoji">🍽️</div>
+        <h3>Recetas</h3>
+        <p>Explorá ideas deliciosas y nutritivas para tu día.</p>
+      </div>
+      <div class="tarjeta-home" onclick="navegarDesdeMenu('pantallaCalendario', this)">
+        <div class="emoji">🗓️</div>
+        <h3>Calendario</h3>
+        <p>Organizá tus comidas y recordatorios de cocina.</p>
+      </div>
+      <div class="tarjeta-home" onclick="abrirListaCompras()">
+        <div class="emoji">🛒</div>
+        <h3>Compras</h3>
+        <p>Tu lista de ingredientes pendientes.</p>
+      </div>      
+    </div>
+    <button onclick="cerrarSesion()">Cerrar sesión</button>
+  </div>
+
+  <!-- Chat IA -->
+  <div class="pantalla" id="pantallaChat">
+    <div class="chatbox" id="chat"></div>
+    <input type="text" id="inputMensaje" placeholder="Escribí tu mensaje..." />
+  </div>
+
+  <!-- Recetas -->
+  <div class="pantalla" id="pantallaRecetas">
+    <h2>Recetas Recomendadas</h2>
+    <div class="recetas-grid" id="contenedorRecetas"></div>
+  </div>
+
+  <!-- Calendario -->
+  <div class="pantalla" id="pantallaCalendario">
+    <h2>📅 Calendario Gastronómico</h2>
+    <div style="display: flex; justify-content: center; align-items: center; gap: 20px;">
+      <button onclick="cambiarMes(-1)">⬅️</button>
+      <h3 id="tituloMes"></h3>
+      <button onclick="cambiarMes(1)">➡️</button>
+    </div>
+    <div id="recordatoriosGuardados"></div>
+  </div>
+
+  <!-- Vista por día -->
+  <div class="pantalla" id="pantallaDia">
+    <h2 id="tituloDia">📌 Recordatorios del día</h2>
+    <div id="listaRecordatorios"></div>
+    <input type="time" id="horaRecordatorio" />
+    <input type="text" id="textoRecordatorio" placeholder="Ej: Sacar pollo del freezer" />
+    <button onclick="agregarRecordatorioDia()">Agregar recordatorio</button>
+  </div>
+
+  <!-- Lista de compras -->
+<div class="pantalla" id="pantallaListaCompras">
+  <h2>🛒 Lista de Compras</h2>
+  <ul id="listaCompras"></ul>
+</div>
+
+<!-- Menú inferior tipo app -->
+<div class="menu-inferior">
+  <button onclick="navegarDesdeMenu('pantallaChat', this)" class="activo">
+    <i>🧑‍🍳</i><span>Chef IA</span>
+  </button>
+  <button onclick="navegarDesdeMenu('pantallaRecetas', this)">
+    <i>🍽️</i><span>Recetas</span>
+  </button>
+  <button onclick="navegarDesdeMenu('pantallaCalendario', this)">
+    <i>🗓️</i><span>Calendario</span>
+  </button>
+  <button onclick="abrirListaCompras()">
+    <i>🛒</i><span>Compras</span>
+  </button>
+</div>
+
+  <!-- Script principal -->
+  <script src="script.js"></script>
+
+  <!-- Navegación del menú inferior -->
+  <script>
+    function navegarDesdeMenu(pantalla, boton) {
+      mostrarPantalla(pantalla);
+      document.querySelectorAll(".menu-inferior button").forEach(btn => btn.classList.remove("activo"));
+      boton.classList.add("activo");
+    }
+  </script>
+
+</body>
+</html>
